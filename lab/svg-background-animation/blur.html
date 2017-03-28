@@ -5,11 +5,10 @@
 <title>-  2byte  -</title>
 <link href="https://fonts.googleapis.com/css?family=Martel:900" rel="stylesheet">
 <style>
-body,html {
+body {
   background: #fefefe;
-  color: #3c3c3c;
+  color: #292929;
   font: 20px 'Martel', serif;
-  height:100%;
 }
 
 a {
@@ -21,36 +20,32 @@ a {
   line-height: 2em;
 }
 
-.intro {
-  animation: introAnimation cubic-bezier(0.88,-0.02, 0.54, 0.76) 15s forwards;
+.opacity-0 {
+  opacity: 0;
 }
 
+.blur {
+  filter: blur(50px);
+}
+
+.intro {
+  animation: introAnimation ease-in-out 3s forwards;
+}
+
+@keyframes introAnimation {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    text-shadow: 1px 1px 5px #a7a7a7;
+  };
+}
 
 #container {
   margin: 0 auto;
   width: 86%;
   margin-top: 100px;
   font-size: 2em;
-  clip-path: circle(0% at 0% 0%);
-  }
-
-
-@keyframes introAnimation {
-  0% {
-  clip-path: circle(1% at 0% 0%);
-  } 
-  
-  50% {
-  clip-path: circle(50% at 40% 20%);
-  }
-
-  100% {
-  clip-path: circle(100% at 50% 50%);
-  }
 }
-
-
-
 
 </style>
 
@@ -61,20 +56,14 @@ a {
 <section class='opacity-0 blur' id='welcome'>Hello, friend.</section>
 <section class='opacity-0 blur' id='content'>
 <p class='paragraph'>I am 2byte. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<p class='paragraph'>I am 2byte. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
 </section>
 
 </section>
-<!-- <script>
+<script>
 welcome.classList.add('intro');
 setTimeout(function(){
 content.classList.add('intro');
 },3000)
-</script> -->
-
-<script>
-container.classList.add('intro');
 </script>
 </body>
 </html>

@@ -5,15 +5,18 @@
 <title>-  2byte  -</title>
 <link href="https://fonts.googleapis.com/css?family=Martel:900" rel="stylesheet">
 <style>
-body,html {
-  background: #fefefe;
-  color: #3c3c3c;
-  font: 20px 'Martel', serif;
-  height:100%;
-}
 
-a {
-  color: #999;
+*{
+margin:0;
+padding:0;
+
+}
+body,html {
+  background: #000;
+  color: #000;
+  width: 100%;
+  height:100%;
+  font: 20px 'Martel', serif;
 }
 
 .paragraph {
@@ -21,60 +24,56 @@ a {
   line-height: 2em;
 }
 
-.intro {
-  animation: introAnimation cubic-bezier(0.88,-0.02, 0.54, 0.76) 15s forwards;
-}
-
 
 #container {
-  margin: 0 auto;
-  width: 86%;
-  margin-top: 100px;
-  font-size: 2em;
-  clip-path: circle(0% at 0% 0%);
-  }
+  background: #fff;
+  width: 100%;
+  height:100%;
+  position:fixed;
+  animation:out 3s linear;
+  z-index:1;
+}
 
+@keyframes out{
+0%{
+-webkit-clip-path: polygon(84px 4px,167px 2px,272px 3px,397px 9px,550px 6px,700px 5px,902px 4px,1092px 4px,1243px 3px,100% 0%,0% 0%);
+}
+25%{
+-webkit-clip-path: polygon(83px 14px,166px 15px,271px 17px,399px 23px,550px 27px,699px 37px,910px 29px,1092px 17px,1245px 33px,100% 0%,0% 0%);
+}
+50%{
+-webkit-clip-path: polygon(87px 51px,168px 38px,271px 62px,401px 87px,552px 69px,694px 92px,911px 58px,1099px 92px,1252px 156px,100% 0%,0% 0%);
+}
+75%{
+-webkit-clip-path: polygon(87px 124px,179px 189px,272px 219px,396px 194px,548px 166px,703px 208px,920px 178px,1102px 187px,1295px 257px,100% 0%,0% 0%);
 
-@keyframes introAnimation {
-  0% {
-  clip-path: circle(1% at 0% 0%);
-  } 
-  
-  50% {
-  clip-path: circle(50% at 40% 20%);
-  }
-
-  100% {
-  clip-path: circle(100% at 50% 50%);
-  }
+}
+100%{
+-webkit-clip-path: polygon(0% 100%,194px 100%,294px 100%,391px 100%,555px 100%,716px 100%,917px 100%,1125px 100%,100% 100%,100% 0%,0% 0%);
+}
 }
 
 
-
+#textArea {
+  margin:5% auto;
+  width: 80%;
+  font-size: 2em;
+ position:absolute;
+ z-index:999;
+}
 
 </style>
 
 </head>
 <body>
-<section id='container'>
+<section id='container'></section>
 
-<section class='opacity-0 blur' id='welcome'>Hello, friend.</section>
-<section class='opacity-0 blur' id='content'>
+<section id='textArea'>
 <p class='paragraph'>I am 2byte. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 <p class='paragraph'>I am 2byte. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
 </section>
 
-</section>
-<!-- <script>
-welcome.classList.add('intro');
-setTimeout(function(){
-content.classList.add('intro');
-},3000)
-</script> -->
 
-<script>
-container.classList.add('intro');
-</script>
+
 </body>
 </html>
