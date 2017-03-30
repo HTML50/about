@@ -2,79 +2,203 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>-  2byte  -</title>
+<title>about</title>
 <link href="https://fonts.googleapis.com/css?family=Martel:900" rel="stylesheet">
 <style>
-body,html {
+*{
+margin:0;
+padding:0;
+}
+
+body {
   background: #fefefe;
-  color: #3c3c3c;
+  color: #292929;
   font: 20px 'Martel', serif;
-  height:100%;
 }
 
 a {
   color: #999;
+  text-decoration:none;
+  transition:filter 0.5s;
+}
+
+a:hover{
+filter:blur(5px);
+}
+
+.more{
+transition:all ease-in-out 1s;
 }
 
 .paragraph {
-  display: block;
   line-height: 2em;
 }
 
-.intro {
-  animation: introAnimation cubic-bezier(0.88,-0.02, 0.54, 0.76) 15s forwards;
+.opacity0 {
+  opacity: 0;
+}
+
+.blur50 {
+  filter: blur(50px);
+}
+
+.transition-opacity{
+transition:opacity 0.3s;
+}
+
+.work-vidz{
+width:100%;
+filter:grayscale(100%);
 }
 
 
-#container {
-  margin: 0 auto;
-  width: 86%;
-  margin-top: 100px;
-  font-size: 2em;
-  clip-path: circle(0% at 0% 0%);
-  }
-
+.intro {
+  animation: introAnimation ease-in-out 1s forwards;
+}
 
 @keyframes introAnimation {
-  0% {
-  clip-path: circle(1% at 0% 0%);
-  } 
-  
-  50% {
-  clip-path: circle(50% at 40% 20%);
-  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    text-shadow: 1px 1px 5px #a7a7a7;
+  };
+}
 
-  100% {
-  clip-path: circle(100% at 50% 50%);
-  }
+#container {
+  width:100%;
+  margin-top: 100px;
+  font-size: 2em;
+}
+
+
+#mask{
+position:fixed;
+background:red;
+width:100%;
+height:100%;
+display:block;
+top:0;
+left:0;
+opacity:0;
+z-index:-1;
+transition:opacity 0.3s;
+}
+
+
+.text-container {
+  width:70%;
+  margin: 0 auto;
+}
+.img-container {
+  width:100%;
+  text-align: center;
+}
+.img-container ul{
+list-style-type:none;
+}
+.img-container ul li{
+width:32%;
+
+display:inline-block;
+}
+</style>
+</head>
+<body>
+<section id="container">
+<section id="welcomeText"class="text-container opacity0 blur50">Hello, friend.</section>
+  <section class="text-container opacity0 blur50">
+  
+  <p class="paragraph">I am <a>2byte</a>. Nice to see you.Lorem <span class="more opacity0 blur50">ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</span> </p>
+  <p class="work paragraph">
+  list of my work, i created them for fun.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad <span class="more">minim </span></p>
+  </section>
+
+  
+  <section class="img-container opacity0 blur50">
+  <ul>
+  <li alt="star war loader" title="star war loader"><video class="work-vidz" src="vids/vader-loader.mp4" loop="true" preload="auto" preload="metadata"></video></li>
+  <li alt="star war loader" title="jumping-box"><video class="work-vidz" src="vids/vader-loader.mp4" loop="true" preload="auto" preload="metadata"></video></li>
+  <li alt="star war loader" title="test-box"><video class="work-vidz" src="vids/vader-loader.mp4" loop="true" preload="auto" preload="metadata"></video></li>
+  <li><video class="work-vidz" src="vids/vader-loader.mp4" loop="true" preload="auto" preload="metadata" alt="alt" title="titt"></video></li>
+  <li><video class="work-vidz" src="vids/vader-loader.mp4" loop="true" preload="auto" preload="metadata"></video></li>
+  <li><video class="work-vidz" src="vids/vader-loader.mp4" loop="true" preload="auto" preload="metadata"></video></li>
+  <li>another game maybe?</li>
+  </ul>
+  </p>
+  </section>
+    
+    
+</section>
+<footer></footer>
+<mask id="mask"></mask>
+
+
+<script>
+
+welcomeText.classList.add('intro');
+
+setTimeout(function(){
+var Nodes=document.getElementsByClassName('text-container')
+for(var i=0;i<Nodes.length;i++)
+  Nodes[i].classList.add('intro');
+Nodes=document.getElementsByClassName('img-container')
+for(var i=0;i<Nodes.length;i++)
+  Nodes[i].classList.add('intro');  
+},1000)
+
+var nodes = document.getElementsByClassName('more');
+setMore()
+setVideoAutoplay();
+
+
+
+
+
+//video autoplay when mouse on
+function setVideoAutoplay(){
+  
+var videoNodes = document.getElementsByClassName('work-vidz');
+  for(var i=0;i<videoNodes.length;i++){
+
+  videoNodes[i].addEventListener('mouseover',(function(id){
+    return function(){
+      videoNodes[id].play();
+    }
+  })(i));
+  videoNodes[i].addEventListener('mouseout',(function(id){
+    return function(){
+      videoNodes[id].pause();
+    }
+  })(i));
+}
 }
 
 
 
+//click plus +++ , get content
 
-</style>
 
-</head>
-<body>
-<section id='container'>
+function setMore(){
+for(var i=0;i<nodes.length;i++){
+nodes[i].outerHTML += '<span id="showMore'+i+'" class="transition-opacity">...<a href="javascript:more('+i+','+nodes[i].offsetHeight+')">+</a></span>';
+nodes[i].style.height=0;
+nodes[i].style.display='none';
+}
+}
 
-<section class='opacity-0 blur' id='welcome'>Hello, friend.</section>
-<section class='opacity-0 blur' id='content'>
-<p class='paragraph'>I am 2byte. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-<p class='paragraph'>I am 2byte. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-</section>
-
-</section>
-<!-- <script>
-welcome.classList.add('intro');
+function more(i,h){
+document.getElementById('showMore'+i).style.display = 'none';
+nodes[i].style.display = 'block';
+//if display sets to INLINE, there will be no animiation
 setTimeout(function(){
-content.classList.add('intro');
-},3000)
-</script> -->
+  nodes[i].classList.remove('opacity0');
+  nodes[i].classList.remove('blur50');
+  nodes[i].style.height = h+'px';
+},0)
+//document.getElementById('more'+i).style.display = 'none';
+}
 
-<script>
-container.classList.add('intro');
 </script>
 </body>
 </html>
