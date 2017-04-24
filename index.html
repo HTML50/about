@@ -11,13 +11,16 @@ margin:0;
 padding:0;
 }
 
+::-webkit-scrollbar{width:10px;}
+::-webkit-scrollbar-track{background-color:var(--border-color)}
+::-webkit-scrollbar-thumb{background-color:#ccc}
+::-webkit-scrollbar-thumb:hover{background-color:#f3f3f3}
+
 body {
   background: #fdfdfd;
   color: #222;
   font: 20px  'Hind Vadodara', cursive;
-  border-top:10px #222 solid;
-  border-bottom:10px #222 solid;
-  border-left:5px #222 solid;
+  overflow-x: hidden;
 }
 
 a {
@@ -61,8 +64,8 @@ transition:opacity 0.3s;
 .work-vidz{
 width:100%;
 height:300px;
-filter:grayscale(100%);
-transition:grayscale 0.5s,box-shadow 0.5s;
+filter: grayscale(100%);
+transition: filter 0.5s,box-shadow 0.5s;
 }
 
 .work-vidz:hover{
@@ -114,7 +117,7 @@ width:64px;
 
 
 .contact{
-height:100px;
+position:relative;
 }
 
 .contact svg{
@@ -143,11 +146,13 @@ right: 0;
 width: 512px;
 height:100%;
 text-align: center;
+visibility:hidden;
 opacity:0;
 transition:opacity 0.5s;
 }
 .social:hover:after{
 opacity:1;
+visibility:visible;
 }
 
 .github:hover path{
@@ -168,14 +173,177 @@ fill:rgb(228, 0, 0);
 .email:hover path{
 fill:rgb(249, 91, 91);
 }
-::-webkit-scrollbar{width:5px;}
-::-webkit-scrollbar-track{background-color:#222}
-::-webkit-scrollbar-thumb{background-color:#ccc}
-::-webkit-scrollbar-thumb:hover{background-color:#f3f3f3}
+.sun{
+    position: absolute;
+    left: -66.5px;
+    top: -62px;
+    height: 200px;
+    width: 200px;
+    background: #f9db62;
+    border-radius: 200px;
+}
 
+.shine {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  animation: 40s shine linear infinite;
+}
+
+.r {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 11px;
+    height: 124px;
+    border-bottom: 42px solid #f7ea05;
+    transform-origin: top;
+}
+
+.r:nth-child(1) {
+  transform: rotate(40deg);
+}
+
+.r:nth-child(2) {
+  transform: rotate(80deg);
+}
+
+.r:nth-child(3) {
+  transform: rotate(120deg);
+}
+
+.r:nth-child(4) {
+  transform: rotate(160deg);
+}
+
+.r:nth-child(5) {
+  transform: rotate(200deg);
+}
+
+.r:nth-child(6) {
+  transform: rotate(240deg);
+}
+
+.r:nth-child(7) {
+  transform: rotate(280deg);
+}
+
+.r:nth-child(8) {
+  transform: rotate(320deg);
+}
+
+.r:nth-child(9) {
+  transform: rotate(360deg);
+}
+
+@keyframes shine {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.cloud, .cloud_two {
+  --cloud-color:rgb(16, 153, 222);
+  animation: move 6s ease infinite;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  position: absolute;
+  top: 19%;
+  right: 27%;
+  margin-top: -30px;
+  margin-left: -30px;
+  background: var(--cloud-color);
+  height: 60px;
+  width: 60px;
+  box-shadow: var(--cloud-color) 65px -15px 0 -5px,  var(--cloud-color) 25px -25px,  var(--cloud-color) 30px 10px,  var(--cloud-color) 60px 15px 0 -10px,  var(--cloud-color) 85px 5px 0 -5px;
+  opacity: 0.2;
+}
+
+.cloud_two {
+  top: 22%;
+  right: 14%;
+  animation-duration: 8s;
+}
+
+@keyframes move {
+  50% {
+    transform: translateY(-15px);
+  }
+}
+.contact:before {
+    content: '';
+    background-color: #069c5e;
+    width: 8px;
+    height: 103px;
+    position: absolute;
+    right: 11%;
+    top: 170%;
+    opacity: 0.5;
+}
+.contact:after {
+    content: '';
+    background-color: #e4493c;
+    border-radius: 100%;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    right: 10%;
+    top: 126%;
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+    -webkit-animation: spin 7s infinite linear;
+    animation: spin 7s infinite linear;
+    --leaf-color:#ecf0f1;
+    box-shadow: 30px 0px 0 5px var(--leaf-color), 15px 25.98076212px 0 5px var(--leaf-color), 15px -25.98076212px 0 5px var(--leaf-color), -15px 25.98076212px 0 5px var(--leaf-color), -15px -25.98076212px 0 5px var(--leaf-color), -30px 0px 0 5px var(--leaf-color);
+}
+@-webkit-keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.footer{
+  margin-bottom: 0px;
+}
+
+#canvas {
+    width: 100%;
+    margin-bottom: -30px;
+    height: 180px;
+}
 </style>
 </head>
 <body>
+<sun class='sun'>
+<shine class='shine'>
+      <light class='r'></light>
+      <light class='r'></light>
+      <light class='r'></light>
+      <light class='r'></light>
+      <light class='r'></light>
+      <light class='r'></light>
+      <light class='r'></light>
+      <light class='r'></light>
+      <light class='r'></light>
+    </shine></sun>
+<cloud class='cloud'></cloud>
+<cloud class='cloud_two'></cloud>
 <section id="container">
 <section id="welcomeText" class="text-container opacity0 blur50">Hello, friend.</section>
   
@@ -220,9 +388,9 @@ fill:rgb(249, 91, 91);
   <li title="a collection of svg Animation"><a href="http://codepen.io/2bt/pen/mWgBPM"><video class="work-vidz" src="vids/svgTextAnimation.mp4" loop="true" preload="auto" preload="metadata" type="video/mp4"></video></a></li>
   
   </ul>
+    </section>
   
-  
-  </section>
+
   
   
   <footer class="img-container opacity0 blur50 footer">
@@ -232,75 +400,13 @@ fill:rgb(249, 91, 91);
 		<a href="http://blog.csdn.net/twobyte"text="Blog" class="csdn social"><svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32"><path d="M906.475693 943.728792c-49.491181 17.325597-152.164608 28.913517-295.537993 28.913517-412.545894 0-635.223462-193.912431-608.80579-450.249611C33.545364 216.96445 363.386627 45.025473 724.595296 45.025473c139.829675 0 222.1301 11.388375 299.383578 30.263258l-24.720008 205.822692c-51.434439-17.35118-171.688267-33.208333-269.12032-33.208333-212.388225 0-392.96493 63.425541-413.440264 263.878946-18.429745 179.328271 108.114346 265.024026 347.120812 265.024026 83.251076 0 205.89944-11.884678 262.580371-29.214369L906.475693 943.728792z" p-id="2381"></path></svg></a>
 		<a href="mailto:222byt@gmail.com"text="222Byt@gmail.com" class="email social"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M15.996 15.457l16.004-7.539v-3.918h-32v3.906zM16.004 19.879l-16.004-7.559v15.68h32v-15.656z"></path></svg></a>
 		<a href="https://weibo.com/sooob"text="Weibo" class="weibo social"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 1026 1024"><path d="M758.889018 500.8c-40-8-20.8-28.8-20.8-28.8s38.4-62.4-8-108.8c-57.6-57.6-198.4 8-198.4 8-54.4 16-40-8-32-48 0-48-16-129.6-160-81.6-142.4 48-265.6 216-265.6 216C-10.710982 569.6 0.489018 656 0.489018 656c20.8 190.4 227.2 243.2 388.8 256 169.6 12.8 396.8-57.6 465.6-201.6C925.289018 566.4 798.889018 508.8 758.889018 500.8L758.889018 500.8 758.889018 500.8zM402.089018 859.2c-168 8-304-75.2-304-185.6s136-198.4 304-206.4 304 60.8 304 169.6C706.089018 747.2 570.089018 851.2 402.089018 859.2L402.089018 859.2 402.089018 859.2zM368.489018 540.8c-168 19.2-148.8 174.4-148.8 174.4s-1.6 49.6 44.8 73.6c99.2 52.8 200 20.8 251.2-44.8C566.889018 680 538.089018 521.6 368.489018 540.8L368.489018 540.8 368.489018 540.8zM325.289018 758.4c-32 3.2-57.6-14.4-57.6-40s22.4-52.8 54.4-56c36.8-3.2 59.2 17.6 59.2 43.2C382.889018 731.2 357.289018 755.2 325.289018 758.4L325.289018 758.4 325.289018 758.4zM424.489018 675.2c-11.2 8-24 6.4-28.8-3.2-6.4-9.6-3.2-24 6.4-32 12.8-9.6 25.6-6.4 30.4 3.2C440.489018 652.8 435.689018 667.2 424.489018 675.2L424.489018 675.2 424.489018 675.2zM840.489018 433.6c12.8 0 25.6-9.6 27.2-22.4 0-1.6 0-1.6 0-3.2 20.8-182.4-152-150.4-152-150.4-16 0-27.2 12.8-27.2 27.2 0 14.4 12.8 27.2 27.2 27.2 123.2-27.2 96 94.4 96 94.4C813.289018 422.4 826.089018 433.6 840.489018 433.6L840.489018 433.6 840.489018 433.6zM821.289018 116.8c-59.2-14.4-121.6-1.6-137.6 1.6-1.6 0-3.2 1.6-3.2 1.6l-1.6 0c-17.6 4.8-28.8 20.8-28.8 38.4 0 22.4 17.6 40 40 40 0 0 22.4-3.2 36.8-8 14.4-6.4 137.6-4.8 200 97.6 33.6 73.6 14.4 123.2 12.8 131.2 0 0-8 19.2-8 38.4 0 22.4 17.6 35.2 40 35.2 19.2 0 33.6-3.2 38.4-33.6l0 0C1074.089018 241.6 926.889018 140.8 821.289018 116.8L821.289018 116.8 821.289018 116.8z" p-id="996"></path></svg></a>
-       <a href="http://twitter.com/0002kb"text="twitter" class="twitter social">
+       <a href="http://twitter.com/0002kb"text="Twitter" class="twitter social">
 		<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M32 7.075c-1.175.525-2.444.875-3.77 1.03 1.357-.812 2.395-2.1 2.888-3.63-1.27.75-2.675 1.3-4.17 1.594C25.75 4.793 24.044 4 22.156 4c-3.625 0-6.563 2.938-6.563 6.563 0 .512.056 1.012.17 1.494C10.304 11.782 5.466 9.17 2.23 5.195c-.563.97-.887 2.1-.887 3.3 0 2.275 1.156 4.287 2.92 5.463-1.076-.03-2.088-.33-2.976-.82v.082c0 3.18 2.263 5.838 5.27 6.437-.55.15-1.132.23-1.732.23-.425 0-.83-.043-1.237-.118.838 2.605 3.263 4.505 6.13 4.562-2.25 1.762-5.074 2.813-8.155 2.813-.53 0-1.05-.03-1.57-.094C2.908 28.92 6.357 30 10.064 30c12.075 0 18.68-10.005 18.68-18.68 0-.287-.005-.57-.018-.85 1.28-.92 2.394-2.075 3.275-3.394z"/></svg></a>
-        <a href="http://codepen.io/2bt"text="codepen" class="codepen social">
+        <a href="http://codepen.io/2bt"text="Codepen" class="codepen social">
 		<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M29.555 11.5l-14-9.332c-.336-.224-.774-.224-1.11 0l-14 9.333c-.277.186-.444.5-.444.833v9.333c0 .334.168.647.446.832l14 9.333c.168.113.36.17.555.17s.388-.057.556-.17l14-9.332c.278-.185.445-.498.445-.832v-9.333c0-.334-.166-.647-.444-.832zM15 20.466L9.803 17 15 13.535 20.197 17 15 20.465zm1-8.667v-6.93l11.197 7.465L22 15.798l-6-4zm-2 0l-6 4-5.197-3.465L14 4.868v6.93zM6.197 17L2 19.798v-5.596L6.197 17zM8 18.202l6 4v6.93L2.803 21.667 8 18.202zm8 4l6-4 5.197 3.465L16 29.132v-6.93zM23.803 17L28 14.202v5.596L23.803 17z"/></svg></a>
-	</section> 
+	</section>
+  <canvas id='canvas' height="180" width="1366"></canvas>
 </footer>
-<script>
-
-welcomeText.classList.add('intro');
-
-setTimeout(function(){
-var Nodes=document.getElementsByClassName('text-container')
-for(var i=0;i<Nodes.length;i++)
-  Nodes[i].classList.add('intro');
-Nodes=document.getElementsByClassName('img-container')
-for(var i=0;i<Nodes.length;i++)
-  Nodes[i].classList.add('intro');  
-},1000)
-
-var nodes = document.getElementsByClassName('more');
-setMore()
-setVideoAutoplay();
-
-
-
-
-
-//video autoplay when mouse on
-function setVideoAutoplay(){
-
-var videoNodes = document.getElementsByClassName('work-vidz');
-  for(var i=0;i<videoNodes.length;i++){
-
-  videoNodes[i].addEventListener('mouseover',(function(id){
-    return function(){
-      videoNodes[id].play();
-    }
-  })(i));
-  videoNodes[i].addEventListener('mouseout',(function(id){
-    return function(){
-      videoNodes[id].pause();
-    }
-  })(i));
-}
-}
-
-
-
-//click plus +++ , get content
-function setMore(){
-for(var i=0;i<nodes.length;i++){
-nodes[i].outerHTML += '<span id="showMore'+i+'" class="transition-opacity">...<a href="javascript:more('+i+','+nodes[i].offsetHeight+')">+</a></span>';
-nodes[i].style.height=0;
-nodes[i].style.display='none';
-}
-}
-
-
-function more(i,h){
-document.getElementById('showMore'+i).style.display = 'none';
-nodes[i].style.display = 'block';
-//if display sets to INLINE, there will be no animiation
-setTimeout(function(){
-  nodes[i].classList.remove('opacity0');
-  nodes[i].classList.remove('blur50');
-  nodes[i].style.height = h+'px';
-},0)
-}
-
-</script>
+<script src='js/main.js'></script>
 </body>
 </html>
