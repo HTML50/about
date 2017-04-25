@@ -173,14 +173,15 @@ fill:rgb(228, 0, 0);
 .email:hover path{
 fill:rgb(249, 91, 91);
 }
-.sun{
+#sun{
     position: absolute;
-    left: -66.5px;
+    left: -267.9px;
     top: -62px;
     height: 200px;
     width: 200px;
     background: #f9db62;
     border-radius: 200px;
+    transition:left 2s;
 }
 
 .shine {
@@ -242,7 +243,8 @@ fill:rgb(249, 91, 91);
   }
 }
 
-.cloud, .cloud_two {
+
+#cloud, #cloud_two {
   --cloud-color:rgb(16, 153, 222);
   animation: move 6s ease infinite;
   -moz-border-radius: 50%;
@@ -250,7 +252,7 @@ fill:rgb(249, 91, 91);
   border-radius: 50%;
   position: absolute;
   top: 19%;
-  right: 27%;
+  right: -10%;
   margin-top: -30px;
   margin-left: -30px;
   background: var(--cloud-color);
@@ -258,11 +260,12 @@ fill:rgb(249, 91, 91);
   width: 60px;
   box-shadow: var(--cloud-color) 65px -15px 0 -5px,  var(--cloud-color) 25px -25px,  var(--cloud-color) 30px 10px,  var(--cloud-color) 60px 15px 0 -10px,  var(--cloud-color) 85px 5px 0 -5px;
   opacity: 0.2;
+  transition:right 2s;
 }
 
-.cloud_two {
+#cloud_two {
   top: 22%;
-  right: 14%;
+  right: -10%;
   animation-duration: 8s;
 }
 
@@ -270,6 +273,14 @@ fill:rgb(249, 91, 91);
   50% {
     transform: translateY(-15px);
   }
+}
+
+#header{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition:top 1s;
 }
 .contact:before {
     content: '';
@@ -321,7 +332,6 @@ fill:rgb(249, 91, 91);
 .footer{
   margin-bottom: 0px;
 }
-
 #canvas {
     width: 100%;
     margin-bottom: -30px;
@@ -330,7 +340,8 @@ fill:rgb(249, 91, 91);
 </style>
 </head>
 <body>
-<sun class='sun'>
+<header id='header'>
+<sun id='sun'>
 <shine class='shine'>
       <light class='r'></light>
       <light class='r'></light>
@@ -342,8 +353,9 @@ fill:rgb(249, 91, 91);
       <light class='r'></light>
       <light class='r'></light>
     </shine></sun>
-<cloud class='cloud'></cloud>
-<cloud class='cloud_two'></cloud>
+    <cloud id='cloud'></cloud>
+    <cloud id='cloud_two'></cloud>
+</header>
 <section id="container">
 <section id="welcomeText" class="text-container opacity0 blur50">Hello, friend.</section>
   
@@ -359,7 +371,7 @@ fill:rgb(249, 91, 91);
   
   <section class="img-container opacity0 blur50">
   <ul>
-  <li title="a canvas animation for OMFG MV"><a href="https://html50.github.io/audioVisualizer"><video class="work-vidz" src="vids/omfg.mp4" loop="true" preload="auto" preload="metadata" type="video/mp4"></video></a></li>
+  <li title="a canvas animation for OMFG MV"><a href="https://html50.github.io/audioVisualizer"><video class="work-vidz" src="vids/omfg.mp4" loop="true" preload="auto" preload="metadata" type="video/mp4" onerror='1.jpg'></video></a></li>
   <li title="a canvas game"><a href="https://html50.github.io/jumping-box"><video class="work-vidz" src="vids/jumping-box.mp4" loop="true" preload="auto" preload="metadata"></video></a></li>
   <li title="a blog based on github-issues"><a href="https://html50.github.io/moment"><video class="work-vidz" src="vids/moment.mp4" loop="true" preload="auto" preload="metadata"></video></a></li>
   <li title="my resume"><a href="https://html50.github.io/resume"><video class="work-vidz" src="vids/resume.mp4" loop="true" preload="auto" preload="metadata"></video></a></li>
