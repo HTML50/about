@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>
+*{
+  margin: 0;
+  padding: 0;
+}
+body,html {
+  height: 100%;
+  font-size: 20px;
+  text-align:center;
+  margin:0;
+}
+
+.top {
+  position:fixed;
+  top:0;
+  right:0;
+  background:#fff;
+  height:50px;
+  width:100%;
+  display:flex;
+  color:#fff;
+  align-items: center;
+  justify-content: space-between;
+  transition: width 0.5s;
+}
+.dir{
+    color: #525252;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+#iframe{
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+.icon{
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    opacity: 0.3;
+    transition: opacity 0.3s;
+}
+
+.icon:hover{
+    opacity: 0.8;
+}
+
+.menu{
+    background: url(img/menu.png) no-repeat 10px;
+    width: 55px;
+}
+
+.close{
+    background: url(img/close.png) no-repeat;
+
+}
+
+.open{
+  background: url(img/open.png) no-repeat 10px;
+  position:fixed;
+  right:0;
+  height:50px;
+  width:50px;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.open:hover{
+  opacity: 1;
+}
+</style>
+
+</head>
+<body>
+
+<open id="openBtn" class="open"></open>
+<top id="nav" class="top">
+<menu id="menuBtn" class="icon menu"></menu>
+<dir id="dir" class="dir"></dir>
+<close id="closeBtn" class="close icon"></close>
+</top>
+
+
+<iframe id="iframe" src="svg-background-animation/animation.html"></iframe>
+
+<script>
+iframe.onload = function(){
+  var title = iframe.contentWindow.document.title || 'untitle';
+  document.title = title;
+  dir.innerHTML = title;
+}
+
+closeBtn.addEventListener('click',function(){
+  nav.style.width=0;
+})
+
+openBtn.addEventListener('click',function(){
+  nav.style.width='100%';
+})
+
+menuBtn.addEventListener('click',function(){
+  console.log('open menu')
+})
+
+</script>
+</body>
+</html>
