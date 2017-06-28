@@ -27,6 +27,8 @@ body,html {
   align-items: center;
   justify-content: space-between;
   transition: width 0.5s;
+    border: 1px #ccc solid;
+    box-shadow: #000 0px -5px 22px;   
 }
 .dir{
     color: #525252;
@@ -38,6 +40,7 @@ body,html {
   width: 100%;
   height: 100%;
   border: none;
+  display: block;
 }
 .icon{
     width: 32px;
@@ -57,7 +60,7 @@ body,html {
 }
 
 .close{
-    background: url(img/close.png) no-repeat;
+    background: url(img/close.png) no-repeat 10px;
 
 }
 
@@ -67,14 +70,33 @@ body,html {
   right:0;
   height:50px;
   width:50px;
-  opacity: 0.8;
+  opacity: 0.3;
   cursor: pointer;
   transition: opacity 0.3s;
 }
 
 .open:hover{
-  opacity: 1;
+  opacity: 0.5;
 }
+
+.list{
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: #fff;
+  transition: width 0.3s;
+  color:#000;
+  overflow: hidden;
+  padding: 50px 0;
+  box-shadow: #001 -8px 27px 30px;    
+}
+
+.list h1{
+
+}
+
 </style>
 
 </head>
@@ -85,10 +107,15 @@ body,html {
 <menu id="menuBtn" class="icon menu"></menu>
 <dir id="dir" class="dir"></dir>
 <close id="closeBtn" class="close icon"></close>
+<list id='list' class="list">
+  <p>
+    <h2>Index</h2>
+  </p>
+</list>
 </top>
 
 
-<iframe id="iframe" src="svg-background-animation/animation.html"></iframe>
+<iframe id="iframe" src="list.html"></iframe>
 
 <script>
 iframe.onload = function(){
@@ -106,7 +133,8 @@ openBtn.addEventListener('click',function(){
 })
 
 menuBtn.addEventListener('click',function(){
-  console.log('open menu')
+  var w =list.style.width;
+  list.style.width= (w==''||w=='0px') ? '300px':0;
 })
 
 </script>
