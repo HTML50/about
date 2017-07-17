@@ -1,142 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<title></title>
-<style>
-*{
-  margin: 0;
-  padding: 0;
-}
-body,html {
-  height: 100%;
-  font-size: 20px;
-  text-align:center;
-  margin:0;
-}
 
-.top {
-  position:fixed;
-  top:0;
-  right:0;
-  background:#fff;
-  height:50px;
-  width:100%;
-  display:flex;
-  color:#fff;
-  align-items: center;
-  justify-content: space-between;
-  transition: width 0.5s;
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body,
+  html {
+    height: 100%;
+    font-size: 20px;
+    text-align: center;
+    margin: 0;
+  }
+  
+  .top {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: #fff;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    color: #fff;
+    align-items: center;
+    justify-content: space-between;
+    transition: width 0.5s;
     border: 1px #ccc solid;
-    box-shadow: #000 0px -5px 22px;   
-}
-.dir{
+    box-shadow: #000 0px -5px 22px;
+  }
+  
+  .dir {
     color: #525252;
     font-size: 1.5rem;
     font-weight: 900;
-}
-
-#iframe{
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
-}
-.icon{
+  }
+  
+  #iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+  
+  .icon {
     width: 32px;
     height: 32px;
     cursor: pointer;
     opacity: 0.3;
     transition: opacity 0.3s;
-}
-
-.icon:hover{
+  }
+  
+  .icon:hover {
     opacity: 0.8;
-}
-
-.menu{
+  }
+  
+  .menu {
     background: url(img/menu.png) no-repeat 10px;
     width: 55px;
-}
-
-.close{
+  }
+  
+  .close {
     background: url(img/close.png) no-repeat 10px;
-
-}
-
-.open{
-  background: url(img/open.png) no-repeat 10px;
-  position:fixed;
-  right:0;
-  height:50px;
-  width:50px;
-  opacity: 0.3;
-  cursor: pointer;
-  transition: opacity 0.3s;
-}
-
-.open:hover{
-  opacity: 0.5;
-}
-
-.list{
-  position: fixed;
-  top: 50px;
-  left: 0;
-  width: 0;
-  height: 100%;
-  background: #fff;
-  transition: width 0.3s;
-  color:#000;
-  overflow: hidden;
-  padding: 50px 0;
-  box-shadow: #001 -8px 27px 30px;    
-}
-
-.list h1{
-
-}
-
-</style>
-
+  }
+  
+  .open {
+    background: url(img/open.png) no-repeat 10px;
+    position: fixed;
+    right: 0;
+    height: 50px;
+    width: 50px;
+    opacity: 0.3;
+    cursor: pointer;
+    transition: opacity 0.3s;
+  }
+  
+  .open:hover {
+    opacity: 0.5;
+  }
+  
+  .list {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #fff;
+    transition: width 0.3s;
+    color: #000;
+    overflow: hidden;
+    padding: 50px 0;
+    box-shadow: #001 -8px 27px 30px;
+  }
+  
+  .list h1 {}
+  </style>
 </head>
+
 <body>
+  <open id="openBtn" class="open"></open>
+  <top id="nav" class="top">
+    <menu id="menuBtn" class="icon menu"></menu>
+    <dir id="dir" class="dir"></dir>
+    <close id="closeBtn" class="close icon"></close>
+    <list id='list' class="list">
+      <p>
+        <h2>Index</h2>
+      </p>
+    </list>
+  </top>
+  <iframe id="iframe"></iframe>
+  <script>
+  iframe.src = location.search.slice(1) || 'list.html';
 
-<open id="openBtn" class="open"></open>
-<top id="nav" class="top">
-<menu id="menuBtn" class="icon menu"></menu>
-<dir id="dir" class="dir"></dir>
-<close id="closeBtn" class="close icon"></close>
-<list id='list' class="list">
-  <p>
-    <h2>Index</h2>
-  </p>
-</list>
-</top>
 
+  iframe.onload = function() {
+    let title = iframe.contentWindow.document.title || 'untitle';
+    document.title = title;
+    dir.innerHTML = title;
+  }
 
-<iframe id="iframe" src="list.html"></iframe>
+  closeBtn.addEventListener('click', function() {
+    nav.style.width = 0;
+  })
 
-<script>
-iframe.onload = function(){
-  var title = iframe.contentWindow.document.title || 'untitle';
-  document.title = title;
-  dir.innerHTML = title;
-}
+  openBtn.addEventListener('click', function() {
+    nav.style.width = '100%';
+  })
 
-closeBtn.addEventListener('click',function(){
-  nav.style.width=0;
-})
-
-openBtn.addEventListener('click',function(){
-  nav.style.width='100%';
-})
-
-menuBtn.addEventListener('click',function(){
-  var w =list.style.width;
-  list.style.width= (w==''||w=='0px') ? '300px':0;
-})
-
-</script>
+  menuBtn.addEventListener('click', function() {
+    let w = parseInt(list.style.width);
+    if (w === 0 || isNaN(w)) {
+      list.style.width = '300px';
+      setTimeout(function() {
+        window.addEventListener('click', function() {
+          list.style.width = 0;
+          window.removeEventListener('click', arguments.callee)
+        })
+      }, 0)
+    } else {
+      list.style.width = 0;
+    }
+  })
+  </script>
 </body>
+
 </html>
