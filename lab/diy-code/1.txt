@@ -1,3 +1,4 @@
+<script>
 var factorial = function(length){
 					var arr = [1,1];
 						for(let i=1;i<length;i++){
@@ -27,3 +28,4 @@ factorial = function(length,a0,a1){
 
 
 factorial(30)
+</script>

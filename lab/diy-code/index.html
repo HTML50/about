@@ -74,11 +74,15 @@
         btn.addEventListener("click", function(){
             iframe.srcdoc = code.value
         })
+    var xhr = new XMLHttpRequest();
 
-
-        var xhr = new XMLHttpRequest;
-        xhr.send('1.txt','get')
-
+    xhr.open('GET','1.txt',true);
+    xhr.send();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState == 4 && xhr.status ==200){
+           code.value = xhr.responseText;
+        }
+    }   
     </script>
 </body>
 
