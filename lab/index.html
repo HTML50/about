@@ -109,12 +109,13 @@
     <close id="closeBtn" class="close icon"></close>
     <list id='list' class="list">
       <p>
-        <h2>Index</h2>
+        <h2><a href="?">Index</a></h2>
       </p>
     </list>
   </top>
   <iframe id="iframe"></iframe>
   <script>
+  'strict mode'
   iframe.src = location.search.slice(1) || 'list.html';
 
 
