@@ -1,0 +1,9 @@
+function add(a,b){
+    if(a>=1 || b>=1) return a+b;
+    var aLen = a.toString().split('.')[1].length,
+        bLen = b.toString().split('.')[1].length,
+        amount = aLen > bLen ? aLen * 10 : bLen * 10;
+    return (a*amount + b*amount) / amount;
+}
+
+console.log(add(1.2,1.1))

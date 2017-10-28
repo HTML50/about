@@ -1,0 +1,39 @@
+var obj = {
+    name:'ss',
+    test:function(){
+        return ()=>{
+            console.log(this)
+        }
+    }
+}
+
+obj.test()();
+
+
+
+function Test(){
+    this.name = 'test'
+    this.test = function(){
+        return function(){
+            console.log(this)
+        }
+    }
+
+}
+
+var obj1 = new Test();
+obj1.test()();
+
+
+
+var obj2 = {
+    name:'ss',
+    test:function(){
+        'use strict'
+        return function(){
+            console.log(this)
+        }
+    }
+}
+
+obj2.test()();

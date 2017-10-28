@@ -1,0 +1,13 @@
+/*
+
+implement bind() method with call(apply)
+
+*/
+
+
+Function.prototype.bind = function(obj){
+    var _this = this;
+    return function(){
+        return _this.call(obj);
+    }
+}
