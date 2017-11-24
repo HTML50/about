@@ -27,7 +27,9 @@ Math.max(this.lightness*(1+a),0))}),fromObject:function(a){if("string"==typeof a
 
 
 var id,nodes = document.getElementsByClassName('more');
-document.addEventListener("scroll", scrollHandler, false);
+document.addEventListener("scroll", scrollHandler, {passive:true});
+document.body.onload = function(){
+
 
 
 welcomeText.classList.add('intro');
@@ -45,14 +47,15 @@ cloud.style.right='27%';
 cloud_two.style.right='14%';
 },2000);
 
-
 setMore();
 setVideoAutoplay();
+}
+
 
 
 function scrollHandler(e) {
-	clearTimeout(id);
-  id=setTimeout(function(){header.style.top = pageYOffset+'px';},500);
+  if(id) clearTimeout(id);
+  id=setTimeout("header.style.top = pageYOffset+'px'",200);
 }
 
 
@@ -62,23 +65,19 @@ function scrollHandler(e) {
 function setVideoAutoplay(){
 
 var videoNodes = document.getElementsByClassName('work-vidz');
-  for(var i=0;i<videoNodes.length;i++){
+  for(let i=0;i<videoNodes.length;i++){
 
-  videoNodes[i].addEventListener('mouseover',(function(id){
-    return function(){
-      videoNodes[id].play();
-    }
-  })(i));
-  videoNodes[i].addEventListener('mouseout',(function(id){
-    return function(){
-      videoNodes[id].pause();
-    }
-  })(i));
+  videoNodes[i].addEventListener('mouseover',function(id){
+      videoNodes[i].play();
+  });
+  videoNodes[i].addEventListener('mouseout',function(id){
+      videoNodes[i].pause();
+  });
 }
 }
 
 
-//click plus +++ , get content
+//click plus +++ , get content 
 function setMore(){
 for(var i=0;i<nodes.length;i++){
 nodes[i].outerHTML += '<span id="showMore'+i+'" class="transition-opacity">...<a  onclick="javascript:more('+i+','+nodes[i].offsetHeight+')">+</a></span>';
@@ -96,7 +95,7 @@ setTimeout(function(){
   nodes[i].classList.remove('opacity0');
   nodes[i].classList.remove('blur50');
   nodes[i].style.height = h+'px';
-},0)
+},10)
 }
 
 
@@ -163,3 +162,8 @@ update=function(){
 };
 setInterval( draw, 1000/60);
 setInterval( update, 1000/60);
+
+
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
