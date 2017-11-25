@@ -90,12 +90,11 @@ nodes[i].style.display='none';
 function more(i,h){
 document.getElementById('showMore'+i).style.display = 'none';
 nodes[i].style.display = 'block';
-//if display sets to INLINE, there will be no animiation
 setTimeout(function(){
   nodes[i].classList.remove('opacity0');
   nodes[i].classList.remove('blur50');
   nodes[i].style.height = h+'px';
-},10)
+},30)
 }
 
 
