@@ -2,156 +2,171 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <link rel="shortcut icon" href="./favicon.png"/>
-  <title></title>
-  <style>
-  @import url('https://fonts.googleapis.com/css?family=Passion+One');
-  * {
-    margin: 0;
-    padding: 0;
-  }
-  
-  html,body {
-     font-family: 'Passion One', cursive;
-    height: 100%;
-    font-size: 20px;
-    text-align: center;
-    margin: 0;
-    overflow: hidden;
-  }
-  
-  .top {
-    position: fixed;
-    top: 0;
-    right: 0;
-    background: #fff;
-    height: 50px;
-    width: 100%;
-    display: flex;
-    color: #fff;
-    align-items: center;
-    justify-content: space-between;
-    transition: width 0.5s;
-    border: 1px #ccc solid;
-    box-shadow: #000 0px -5px 22px;
-  }
-  
-  .dir {
-    color: #525252;
-    font-size: 1.5rem;
-    font-weight: 900;
-  }
-  
-  #iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    display: block;
-    margin-top: 60px;
-  }
-  
-  .icon {
-    width: 32px;
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="./favicon.png" />
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Palanquin');
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    html,
+    body {
+        font-family: 'Palanquin', sans-serif;
+        height: 100%;
+        font-size: 20px;
+        text-align: center;
+        margin: 0;
+        overflow: hidden;
+    }
+
+    .top {
+        position: fixed;
+        top: 0;
+        right: 0;
+        background: #fff;
+        height: 50px;
+        width: 100%;
+        display: flex;
+        color: #fff;
+        align-items: center;
+        justify-content: space-around;
+        transition: width 0.5s,top,0.5s;
+    }
+
+    .title { 
+      display: block;
+      color: #348242;
+        font-size: 1.5rem;
+        font-weight: 900;}
+
+    .dir {
+    color: #a5a5a5;
+    font-size: 0.8rem;
+        width: 60%;
+    }
+
+    #iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+    }
+
+    .icon-width{
+            width: 32px;
     height: 32px;
-    cursor: pointer;
-    opacity: 0.3;
-    transition: opacity 0.3s;
-  }
-  
-  .icon:hover {
-    opacity: 0.8;
-  }
-  
-  .menu {
-    background: url(img/menu.png) no-repeat 10px;
-    width: 55px;
-  }
-  
-  .close {
-    background: url(img/close.png) no-repeat 0px;
-  }
-  
-  .open {
-    background: url(img/open.png) no-repeat 10px;
-    position: fixed;
-    right: 20px;
-    height: 50px;
-    width: 50px;
-    opacity: 0.3;
-    cursor: pointer;
-    transition: opacity 0.3s;
-  }
-  
-  .open:hover {
-    opacity: 0.5;
-  }
-  
-  .list {
-    position: fixed;
-    top: 50px;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: #fff;
-    transition: width 0.3s;
-    color: #000;
-    overflow: hidden;
-    padding: 50px 0;
-    box-shadow: #001 -8px 27px 30px;
-  }
-  
-  .list h1 {}
-  </style>
+    }
+
+    .icon {
+        cursor: pointer;
+        opacity: 1;
+        transition: opacity 0.3s;
+    }
+
+    .icon:hover {
+        opacity: 0.8;
+    }
+
+    .menu {
+        background: url(img/menu.svg) no-repeat 10px;
+        width: 55px;
+    }
+
+    .list {
+        position: fixed;
+        top: 50px;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background: #fff;
+        transition: width 0.3s;
+        color: #000;
+        overflow: hidden;
+        padding: 50px 0;
+    }
+
+    </style>
 </head>
 
 <body>
-  <open id="openBtn" class="open"></open>
-  <top id="nav" class="top">
-    <menu id="menuBtn" class="icon menu"></menu>
-    <dir id="dir" class="dir"></dir>
-    <close id="closeBtn" class="close icon"></close>
-    <list id='list' class="list">
-      <p>
-        <h2><a href="?">Index</a></h2>
-      </p>
-    </list>
-  </top>
-  <iframe id="iframe"></iframe>
-  <script>
-  'strict mode'
-  iframe.src = location.search.slice(1) || 'list.html';
+
+    <nav id="nav" class="top">
+        <lab class="title icon">IN THE LAB</lab>
+        <dir id="dir" class="dir"></dir>
+        <menu id="menuBtn" class="icon menu icon-width"></menu>
+        <list id='list' class="list">
+            <p>
+                <h2><a href="?">Index</a></h2>
+            </p>
+        </list>
+    </nav>
 
 
-  iframe.onload = function() {
-    let title = iframe.contentWindow.document.title || 'untitle';
-    document.title = title;
-    dir.innerHTML = title;
-  }
+    <iframe id="iframe"></iframe>
+    <script>
+    'strict mode';
+    var total = 0,
+        direction = 1;
 
-  closeBtn.addEventListener('click', function() {
-    nav.style.width = 0;
-  })
+    iframe.src = location.search.slice(1) || 'list.html';
 
-  openBtn.addEventListener('click', function() {
-    nav.style.width = '100%';
-  })
 
-  menuBtn.addEventListener('click', function() {
-    let w = parseInt(list.style.width);
-    if (w === 0 || isNaN(w)) {
-      list.style.width = '300px';
-      setTimeout(function() {
-        window.addEventListener('click', function() {
-          list.style.width = 0;
-          window.removeEventListener('click', arguments.callee)
-        })
-      }, 0)
-    } else {
-      list.style.width = 0;
+    iframe.onload = function() {
+        let title = iframe.contentWindow.document.title;
+        document.title = title;
+        if(title !== 'IN THE LAB') {
+            dir.innerHTML = title;
+        }else{
+            dir.innerHTML = '';
+        }
+        iframe.contentWindow.addEventListener('DOMMouseScroll', toggleNav,{passive:true})
+        iframe.contentWindow.addEventListener('mousewheel', toggleNav,{passive:true})
     }
-  })
-  </script>
+
+
+    function toggleNav(e) {
+        var delta = -e.wheelDelta || e.detail*40,
+        showNav = function(){
+          nav.style.top = 0;
+        },
+        hideNav = function(){
+          nav.style.top = '-50px'
+        }
+
+        if(delta/120 != direction){
+          direction = -direction;
+          total = 0
+        }else{
+          total += delta;
+        }
+
+        if(total < -600){
+          showNav()
+        }
+        
+        if(total > 120){
+          hideNav()
+        }
+
+    }
+
+    menuBtn.addEventListener('click', function() {
+        let w = parseInt(list.style.width);
+        if (w === 0 || isNaN(w)) {
+            list.style.width = '300px';
+            setTimeout(function() {
+                window.addEventListener('click', function() {
+                    list.style.width = 0;
+                    window.removeEventListener('click', arguments.callee)
+                })
+            }, 0)
+        } else {
+            list.style.width = 0;
+        }
+    })
+    </script>
 </body>
 
 </html>

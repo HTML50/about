@@ -80,7 +80,7 @@ var videoNodes = document.getElementsByClassName('work-vidz');
 //click plus +++ , get content 
 function setMore(){
 for(var i=0;i<nodes.length;i++){
-nodes[i].outerHTML += '<span id="showMore'+i+'" class="transition-opacity">...<a  onclick="javascript:more('+i+','+nodes[i].offsetHeight+')">+</a></span>';
+nodes[i].outerHTML += '<span id="showMore'+i+'" class="transition-opacity">...<a onclick="javascript:more('+i+','+nodes[i].offsetHeight+')">+</a></span>';
 nodes[i].style.height=0;
 nodes[i].style.display='none';
 }
