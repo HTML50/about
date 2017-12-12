@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="./favicon.png" />
+    <link rel="shortcut icon" href="./img/favicon.png" />
     <style>
     @import url('https://fonts.googleapis.com/css?family=Palanquin');
     * {
@@ -24,7 +24,6 @@
     .top {
         position: fixed;
         top: 0;
-        right: 0;
         background: #fff;
         height: 50px;
         width: 100%;
@@ -32,18 +31,19 @@
         color: #fff;
         align-items: center;
         justify-content: space-around;
-        transition: width 0.5s,top,0.5s;
+        transition: width 0.5s, top, 0.5s;
     }
 
-    .title { 
-      display: block;
-      color: #348242;
+    .title {
+        display: block;
+        color: #348242;
         font-size: 1.5rem;
-        font-weight: 900;}
+        font-weight: 900;
+    }
 
     .dir {
-    color: #a5a5a5;
-    font-size: 0.8rem;
+        color: #a5a5a5;
+        font-size: 0.8rem;
         width: 60%;
     }
 
@@ -51,12 +51,12 @@
         width: 100%;
         height: 100%;
         border: none;
-        display: block;
+        transition: transform 0.5s;
     }
 
-    .icon-width{
-            width: 32px;
-    height: 32px;
+    .icon-width {
+        width: 32px;
+        height: 32px;
     }
 
     .icon {
@@ -70,45 +70,64 @@
     }
 
     .menu {
-        background: url(img/menu.svg) no-repeat 10px;
-        width: 55px;
+        background: url(img/menu.svg) no-repeat 118px;
+        width: 150px;
     }
 
     .list {
         position: fixed;
-        top: 50px;
-        left: 0;
-        width: 0;
+        top: -100%;
         height: 100%;
+        width: 100%;
         background: #fff;
-        transition: width 0.3s;
         color: #000;
         overflow: hidden;
-        padding: 50px 0;
+        opacity: 0;
+        transition: all 0.5s;
     }
 
+    .list a {
+        text-decoration: none;
+        color: #737373;
+        display: block;
+
+        padding: 5vh;
+    }
+
+    .list a:hover {
+        background: #f1f1f1;
+    }
+
+
+    .list-open {
+        top: 50px;
+        opacity: 1;
+    }
     </style>
 </head>
 
 <body>
-
     <nav id="nav" class="top">
-        <lab class="title icon">IN THE LAB</lab>
+        <lab id="lab" class="title icon">IN THE LAB</lab>
         <dir id="dir" class="dir"></dir>
         <menu id="menuBtn" class="icon menu icon-width"></menu>
-        <list id='list' class="list">
-            <p>
-                <h2><a href="?">Index</a></h2>
-            </p>
-        </list>
     </nav>
-
-
+    <list id='list' class="list">
+        <p>
+            <h2><a href="./index.html">HOME</a></h2>
+            <h2><a href="/guestbook.html">CONTACT</a></h2>
+            <h2><a href="/about/">ABOUT</a></h2>
+            <h2><a href="https://github.com/HTML50/about/issues/new?title=title&body=show me your code&labels=code">POST CODE HERE</a></h2>
+            <h2><a href="https://github.com/html50/about/lab">GITHUB</a></h2>
+        </p>
+    </list>
     <iframe id="iframe"></iframe>
     <script>
     'strict mode';
     var total = 0,
-        direction = 1;
+        direction = 1,
+        mouseMoveDirection = 1,
+        mouseMoveDistance = 0;
 
     iframe.src = location.search.slice(1) || 'list.html';
 
@@ -116,56 +135,98 @@
     iframe.onload = function() {
         let title = iframe.contentWindow.document.title;
         document.title = title;
-        if(title !== 'IN THE LAB') {
+        if (title !== 'IN THE LAB') {
             dir.innerHTML = title;
-        }else{
+        } else {
             dir.innerHTML = '';
         }
-        iframe.contentWindow.addEventListener('DOMMouseScroll', toggleNav,{passive:true})
-        iframe.contentWindow.addEventListener('mousewheel', toggleNav,{passive:true})
+        iframe.contentWindow.addEventListener('DOMMouseScroll', toggleNav, { passive: true })
+        iframe.contentWindow.addEventListener('mousewheel', toggleNav, { passive: true })
+        iframe.contentWindow.addEventListener('mousemove', toggleNavByMouse, { passive: true })
+        iframe.contentWindow.addEventListener("keydown", function(e) {
+            if (e.keyCode === 0x74) {
+                e.preventDefault();
+                iframe.contentWindow.location.reload();
+            }
+
+            if (e.keyCode === 8 && iframe.contentWindow.document.activeElement !== iframe.contentDocument.querySelector('#code')) {
+                history.go(-1);
+            }
+
+        });
+
     }
+
+    function toggleNavByMouse(e) {
+        if (e.clientY < 100 && nav.style.top !== 0) {
+            showNav();
+        };
+    }
+
 
 
     function toggleNav(e) {
-        var delta = -e.wheelDelta || e.detail*40,
-        showNav = function(){
-          nav.style.top = 0;
-        },
-        hideNav = function(){
-          nav.style.top = '-50px'
+        var delta = -e.wheelDelta || e.detail * 40;
+
+        if (delta / 120 != direction) {
+            direction = -direction;
+            total = 0
+        } else {
+            total += delta;
         }
 
-        if(delta/120 != direction){
-          direction = -direction;
-          total = 0
-        }else{
-          total += delta;
+        if (total < -600) {
+            showNav()
+            if (iframe.contentWindow.related) {
+                iframe.contentWindow.related.style.marginTop = 0;
+            }
         }
 
-        if(total < -600){
-          showNav()
-        }
-        
-        if(total > 120){
-          hideNav()
+        if (total > 120) {
+            hideNav()
+            if (iframe.contentWindow.related) {
+                iframe.contentWindow.related.style.marginTop = '-50px';
+            }
         }
 
     }
 
+
+    function showNav() {
+        nav.style.top = 0;
+        nav.style.borderBottom = 'none'
+    }
+
+    function hideNav() {
+        nav.style.top = '-50px'
+        nav.style.borderBottom = 'solid #348242 3px'
+    }
+
+
+    lab.addEventListener('click', function() {
+        iframe.src = "list.html";
+    })
+
     menuBtn.addEventListener('click', function() {
-        let w = parseInt(list.style.width);
-        if (w === 0 || isNaN(w)) {
-            list.style.width = '300px';
-            setTimeout(function() {
-                window.addEventListener('click', function() {
-                    list.style.width = 0;
-                    window.removeEventListener('click', arguments.callee)
-                })
-            }, 0)
+        if (getComputedStyle(list).opacity === '0') {
+            list.classList.add('list-open')
         } else {
-            list.style.width = 0;
+            list.classList.remove('list-open')
         }
     })
+
+    window.addEventListener("keydown", function(e) {
+        if (e.keyCode === 0x74) {
+            e.preventDefault();
+            iframe.contentWindow.location.reload();
+        }
+
+        if (e.keyCode === 8) {
+            e.preventDefault();
+            history.go(-1);
+        }
+
+    });
     </script>
 </body>
 

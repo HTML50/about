@@ -1,125 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-<meta charset="UTF-8">
-<title>-  2byte  -</title>
-<link href="https://fonts.googleapis.com/css?family=Martel:900" rel="stylesheet">
-<style>
-body {
-  background: #000;
-  color: #fff;
-  font: 20px 'Martel', serif;
-}
+    <meta charset="UTF-8">
+    <title>SVG animation</title>
+    <link rel="stylesheet" href="../img/general.css">
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Alegreya+Sans+SC');
+    html {
+        min-height: calc(100% - 50px);
+    }
 
-.paragraph {
-  display: block;
-  line-height: 2em;
-}
+    body {
+        font-size: 20px;
+        text-align: center;
+        background: #356d54;
+    }
 
+    a {
+        background: #fff;
+        box-shadow: #000 0px 5px 27px -8px;
+        padding: 40px;
+        margin: 20px;
+        display: inline-block;
+        width: 150px;
+        height: 80px;
+        vertical-align: middle;
+        color: #000;
+        text-decoration: none;
+        text-align: left;
+        transition: transform 0.2s;
+    }
 
-#container {
-  margin: 0 auto;
-  width: 86%;
-  margin-top: 100px;
-  font-size: 2em;
-}
+    a:hover {
+        transform: scale(1.05);
+        color: green;
+    }
 
+    #list {
+        opacity: 0;
+        transition: opacity, 0.7s;
+        width: 80vw;
+        margin: 0 auto;
+    }
 
+    #related {
+        font-family: 'Palanquin', sans-serif;
+        background: #f3f3f3;
+        height: 50px;
+        transition: margin .5s;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        color: #8a8a8a;
+        font-size: 1.5rem;
+    }
 
-//animation
+    h2 {
+        font-weight: 500;
+        padding-bottom: 14px;
+        color: #313131;
+    }
 
-section.p12 a{
-  padding-top: 50px;
-  font-weight: 200;
-  width: 440px;
-  height: 200px;
-  line-height: 200px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-left: -220px;
-  margin-top: -100px;
-  margin-top: -150px;
-}
-section.p12 a:before {
-  content: attr(data-content);
-  color: #465154;
-  transition: all .5s ease-in;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background-color: #fff;
-  padding-top: 50px;
-   -webkit-clip-path: polygon(0% 100%, 159px 188px, 171px 185px, 174px 185px, 184px 182px, 191px 183px, 199px 179px, 202px 176px, 219px 158px, 225px 175px, 230px 172px, 245px 179px, 283px 184px, 293px 187px, 311px 192px, 318px 191px, 357px 194px, 100% 100%);
-  animation: montanhaDaTristeza 0.5s forwards linear;
-}
-section.p12 a:hover:before {
-  animation: montanhaDaAlegria 0.9s forwards linear;
-}
+    p {
+        font-size: 1.4rem;
+        color: #656565;
+    }
 
-
-
-@keyframes montanhaDaAlegria {
-  0% {
-    -webkit-clip-path: polygon(0% 100%, 159px 188px, 171px 185px, 174px 185px, 184px 182px, 191px 183px, 199px 179px, 202px 176px, 219px 158px, 225px 175px, 230px 172px, 245px 179px, 283px 184px, 293px 187px, 311px 192px, 318px 191px, 357px 194px, 100% 100%);
-    clip-path: polygon(0% 100%, 159px 188px, 171px 185px, 174px 185px, 184px 182px, 191px 183px, 199px 179px, 202px 176px, 219px 158px, 225px 175px, 230px 172px, 245px 179px, 283px 184px, 293px 187px, 311px 192px, 318px 191px, 357px 194px, 100% 100%);
-  }
-  25% {
-    -webkit-clip-path: polygon(0% 100%, 153px 176px, 165px 174px, 167px 173px, 187px 155px, 193px 161px, 200px 147px, 203px 149px, 220px 129px, 226px 143px, 231px 140px, 240px 154px, 246px 147px, 285px 171px, 295px 174px, 313px 178px, 329px 182px, 100% 100%);
-    clip-path: polygon(0% 100%, 153px 176px, 165px 174px, 167px 173px, 187px 155px, 193px 161px, 200px 147px, 203px 149px, 220px 129px, 226px 143px, 231px 140px, 240px 154px, 246px 147px, 285px 171px, 295px 174px, 313px 178px, 329px 182px, 100% 100%);
-  }
-  50% {
-    -webkit-clip-path: polygon(0% 100%, 106px 149px, 145px 128px, 158px 119px, 178px 101px, 184px 107px, 190px 92px, 201px 87px, 217px 66px, 223px 81px, 228px 78px, 244px 94px, 251px 87px, 289px 113px, 302px 125px, 316px 140px, 346px 163px, 100% 100%);
-    clip-path: polygon(0% 100%, 106px 149px, 145px 128px, 158px 119px, 178px 101px, 184px 107px, 190px 92px, 201px 87px, 217px 66px, 223px 81px, 228px 78px, 244px 94px, 251px 87px, 289px 113px, 302px 125px, 316px 140px, 346px 163px, 100% 100%);
-  }
-  75% {
-    -webkit-clip-path: polygon(0% 100%, 82px 132px, 117px 97px, 131px 93px, 172px 65px, 179px 76px, 185px 77px, 199px 68px, 217px 44px, 223px 58px, 228px 55px, 244px 60px, 253px 42px, 295px 79px, 314px 87px, 331px 88px, 376px 145px, 100% 100%);
-    clip-path: polygon(0% 100%, 82px 132px, 117px 97px, 131px 93px, 172px 65px, 179px 76px, 185px 77px, 199px 68px, 217px 44px, 223px 58px, 228px 55px, 244px 60px, 253px 42px, 295px 79px, 314px 87px, 331px 88px, 376px 145px, 100% 100%);
-  }
-  100% {
-    -webkit-clip-path: polygon(0% 100%, 49px 99px, 100px 53px, 113px 68px, 147px 29px, 153px 40px, 160px 42px, 187px 63px, 209px 11px, 215px 25px, 219px 21px, 244px 61px, 264px 0px, 311px 60px, 330px 79px, 349px 65px, 398px 107px, 100% 100%);
-    clip-path: polygon(0% 100%, 49px 99px, 100px 53px, 113px 68px, 147px 29px, 153px 40px, 160px 42px, 187px 63px, 209px 11px, 215px 25px, 219px 21px, 244px 61px, 264px 0px, 311px 60px, 330px 79px, 349px 65px, 398px 107px, 100% 100%);
-  }
-}
-
-@keyframes montanhaDaTristeza {
-  100% {
-    -webkit-clip-path: polygon(0% 100%, 159px 188px, 171px 185px, 174px 185px, 184px 182px, 191px 183px, 199px 179px, 202px 176px, 219px 158px, 225px 175px, 230px 172px, 245px 179px, 283px 184px, 293px 187px, 311px 192px, 318px 191px, 357px 194px, 100% 100%);
-    clip-path: polygon(0% 100%, 159px 188px, 171px 185px, 174px 185px, 184px 182px, 191px 183px, 199px 179px, 202px 176px, 219px 158px, 225px 175px, 230px 172px, 245px 179px, 283px 184px, 293px 187px, 311px 192px, 318px 191px, 357px 194px, 100% 100%);
-  }
-  75% {
-    -webkit-clip-path: polygon(0% 100%, 153px 176px, 165px 174px, 167px 173px, 187px 155px, 193px 161px, 200px 147px, 203px 149px, 220px 129px, 226px 143px, 231px 140px, 240px 154px, 246px 147px, 285px 171px, 295px 174px, 313px 178px, 329px 182px, 100% 100%);
-    clip-path: polygon(0% 100%, 153px 176px, 165px 174px, 167px 173px, 187px 155px, 193px 161px, 200px 147px, 203px 149px, 220px 129px, 226px 143px, 231px 140px, 240px 154px, 246px 147px, 285px 171px, 295px 174px, 313px 178px, 329px 182px, 100% 100%);
-  }
-  50% {
-    -webkit-clip-path: polygon(0% 100%, 106px 149px, 145px 128px, 158px 119px, 178px 101px, 184px 107px, 190px 92px, 201px 87px, 217px 66px, 223px 81px, 228px 78px, 244px 94px, 251px 87px, 289px 113px, 302px 125px, 316px 140px, 346px 163px, 100% 100%);
-    clip-path: polygon(0% 100%, 106px 149px, 145px 128px, 158px 119px, 178px 101px, 184px 107px, 190px 92px, 201px 87px, 217px 66px, 223px 81px, 228px 78px, 244px 94px, 251px 87px, 289px 113px, 302px 125px, 316px 140px, 346px 163px, 100% 100%);
-  }
-  25% {
-    -webkit-clip-path: polygon(0% 100%, 82px 132px, 117px 97px, 131px 93px, 172px 65px, 179px 76px, 185px 77px, 199px 68px, 217px 44px, 223px 58px, 228px 55px, 244px 60px, 253px 42px, 295px 79px, 314px 87px, 331px 88px, 376px 145px, 100% 100%);
-    clip-path: polygon(0% 100%, 82px 132px, 117px 97px, 131px 93px, 172px 65px, 179px 76px, 185px 77px, 199px 68px, 217px 44px, 223px 58px, 228px 55px, 244px 60px, 253px 42px, 295px 79px, 314px 87px, 331px 88px, 376px 145px, 100% 100%);
-  }
-  0% {
-    -webkit-clip-path: polygon(0% 100%, 49px 99px, 100px 53px, 113px 68px, 147px 29px, 153px 40px, 160px 42px, 187px 63px, 209px 11px, 215px 25px, 219px 21px, 244px 61px, 264px 0px, 311px 60px, 330px 79px, 349px 65px, 398px 107px, 100% 100%);
-    clip-path: polygon(0% 100%, 49px 99px, 100px 53px, 113px 68px, 147px 29px, 153px 40px, 160px 42px, 187px 63px, 209px 11px, 215px 25px, 219px 21px, 244px 61px, 264px 0px, 311px 60px, 330px 79px, 349px 65px, 398px 107px, 100% 100%);
-  }
-}
-
-#box{
-height:200px;
-width:300px;
-}
-</style>
-
+    .place-holder {
+        width: 80%;
+    }
+    </style>
 </head>
-<body>
-<section id='container'>
-<section class='p12'><a data-content='test'>GOOD</a></section>
-</section>
-<script>
 
-</script>
+<body>
+    <div id="related">
+        <span class="previous"><< name</span>
+        <span class="place-holder"></span>
+        <span class="next">name >></span>
+    </div>
+    <div id="list">
+        <a href="moment.html">
+            <h2>ink effect</h2>
+        </a>
+        <a href="blur.html">
+            <h2>blur effect</h2>
+        </a>
+        <a href="circle.html">
+            <h2>circle effect</h2>
+        </a>
+        <a href="drop.html">
+            <h2>svg drop effect</h2>
+        </a>
+        <a href="wipe-black.html">
+            <h2>wipe black</h2>
+        </a>
+        <a href="wipe-white.html">
+            <h2>wipe white</h2>
+        </a>
+        </list>
+        <script type="text/javascript">
+        document.body.onload = function() {
+            list.style.opacity = 1;
+        }
+        </script>
 </body>
+
 </html>

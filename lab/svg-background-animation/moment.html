@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+<title>SVG animation -> ink effect</title>
 <meta charset="UTF-8">
 <style>
-@font-face {font-family: 'jmmaobi';src: url('//raw.githubusercontent.com/b41/b41.github.io/master/font.png') format('woff2'),url('//raw.githubusercontent.com/b41/b41.github.io/master/font.bmp') format('woff');font-weight: normal;font-style: normal;}.css{font-family: 'jmmaobi';}
+@font-face {font-family: 'jmmaobi';src: url('font.png') format('woff2'),url('font.bmp') format('woff');font-weight: normal;font-style: normal;}.css{font-family: 'jmmaobi';}
 
 body {
   background: #fff;
@@ -14,8 +15,8 @@ body {
 
 .paragraph {
   font-family:'jmmaobi';
-  font-size: 30rem;
-  background-image:url(https://html50.github.io/about/lab/svg-background-animation/noise.svg);
+  font-size: 15rem;
+  background-image:url(noise.svg);
   background-size:cover;
   filter:blur(1px);
   -webkit-background-clip: text;
@@ -28,5 +29,23 @@ body {
 </head>
 <body>
 <span class='paragraph'>此刻</span>
+
+<p><button class="replay">replay</button></p>
+<script src="../img/general.js"></script>
+<script>
+window.addEventListener('load',function(){
+  var btn = document.querySelector('button');
+  setTimeout(function(){
+    btn.style.display= 'block';   
+    setTimeout(function(){
+      btn.style.opacity= '1';
+    },10)
+    btn.addEventListener('click',function(){
+      location.reload()
+    })
+  },8000)
+})
+
+</script>
 </body>
 </html>

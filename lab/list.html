@@ -13,7 +13,7 @@
     body{
         font-family: 'Alegreya Sans SC', sans-serif;
         font-size: 20px;
-        background: linear-gradient(130deg, #46a08c 0%, #1C3F1D 100%, #303030 90%);
+        background:url('img/bg.jpg') 100% no-repeat;
         text-align: center;
         border: 60px solid #fff;
     }
@@ -29,7 +29,18 @@
         vertical-align: middle;
         color:#000;
         text-decoration: none;
-       text-align: left;  
+       text-align: left;
+       transition: transform 0.2s;
+    }
+
+    a:hover{
+        transform: scale(1.05);
+        color: green;
+    }
+
+    #list{
+    opacity: 0;
+        transition: opacity,0.7s;  
     }
 
     h2{
@@ -51,46 +62,43 @@ font-size: 1.4rem;
 </head>
 
 <body>
+<div id="list">
     <a href="svg-background-animation/">
-    <card>
         <h2>SVG animation</h2>
         <p>title fade in with ink effect</p>
-    </card>
+   </a>
 
-    <a href="diy-code/">
-        <card>
+    <a href="diy-code/">    
             <h2>code DIY</h2>
-            <p>code and instance</p>
-        </card>
+            <p>code and instance</p>     
     </a>
       
-   <a href="diy-code/">
-        <card>
+   <a href="diy-code/">     
             <h2>code DIY</h2>
-            <p>code and instance</p>
-        </card>
+            <p>code and instance</p>    
     </a>
 
-       <a href="diy-code/">
-        <card>
+       <a href="diy-code/">  
             <h2>code DIY</h2>
-            <p>code and instance</p>
-        </card>
+            <p>code and instance</p>     
     </a>   
 
-    <a href="diy-code/">
-        <card>
+    <a href="diy-code/">  
             <h2>code DIY</h2>
-            <p>code and instance</p>
-        </card>
+            <p>code and instance</p>     
     </a>
 
-   <a href="diy-code/">
-        <card>
+   <a href="diy-code/">      
             <h2>code DIY</h2>
             <p>code and instance</p>
-        </card>
     </a>
+
+    </list>
+    <script type="text/javascript">
+        document.body.onload = function(){
+            list.style.opacity = 1;
+        }
+    </script>
 </body>
 
 </html>
